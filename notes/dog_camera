@@ -1,0 +1,18 @@
+ffmpeg -f v4l2 -input_format yuyv422 -video_size 1280x720 -framerate 30 -i /dev/video1   -c:v libx264 -preset ultrafast -tune zerolatency -b:v 500k -f rtp udp://192.168.123.100:5004
+
+
+
+sudo fuser -v /dev/video0
+
+
+IP14:0 - none
+IP14:1 - none
+
+IP15:0 - bottom back
+
+IP13:0 - under front
+IP13:2 - front right
+
+Scan:
+nmap -sn 192.168.123.0/24
+

@@ -1,0 +1,67 @@
+-----------------------------------------------------------------------
+RASPBERRY PI:
+
+GO1 ROS launch:
+ros2 launch unitree_ros unitree_driver_launch.py
+
+
+just lidar:
+ros2 launch sllidar_ros2 sllidar_s3_launch.py
+
+
+launch mapper stack:
+ros2 launch dogpi_nav mapping_launch.py
+
+
+launch navigation stack:
+ros2 launch dogpi_nav navigation_bringup_launch.py
+
+
+launch localisation stack:
+ros2 launch dogpi_nav localization_bringup_launch.py
+
+
+just slamer:
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=./src/dogpi_nav/config/mapper_params_online_async.yaml
+
+
+just localisation:
+ros2 launch nav2_bringup localization_launch.py   map:=/home/dogpi/ros2_ws/src/dogpi_nav/map/my_map.yaml   params_file:=/home/dogpi/ros2_ws/src/dogpi_nav/config/nav2_params.yaml
+
+
+just navigation:
+ros2 launch nav2_bringup navigation_launch.py map:=/home/dogpi/ros2_ws/src/dogpi_nav/map/my_map.yaml   params_file:=/home/dogpi/ros2_ws/src/dogpi_nav/config/nav2_params_navigation.yaml
+
+
+run mqtt bridge (deprecated):
+ros2 run dogpi_nav cmd_vel_mqtt_bridge
+
+
+launch video node:
+ros2 run v4l2_camera v4l2_camera_node --ros-args -p video_device:=/dev/video0
+
+ros initial camera TF:
+ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_link camera_frame
+
+
+-----------------------------------------------------------------------
+DEV PC:
+
+launch RViz2:
+rviz2
+
+
+Set first frame:
+ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 base_link laser
+
+
+Set map to odom:
+ros2 topic pub --once /initialpose geometry_msgs/PoseWithCovarianceStamped "{header: {frame_id: 'map'}, pose: {pose: {position: {x: 1.0, y: 2.0, z: 0.0}, orientation: {z: 0.0, w: 1.0}}, covariance: [0.25, 0, 0, 0, 0, 0, 0, 0.25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}}"
+
+
+ros keyboard nav:
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+
+Save map through rviz2, or:
+ros2 run nav2_map_server map_saver_cli -f ~/my_map

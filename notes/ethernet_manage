@@ -1,0 +1,26 @@
+Identify the Ethernet device:
+
+nmcli device status
+
+Set a static IP (replace eth0 with your actual device name):
+
+nmcli con mod eth0 ipv4.addresses 192.168.123.25/24
+nmcli con mod eth0 ipv4.gateway 192.168.123.1
+nmcli con mod eth0 ipv4.dns 8.8.8.8
+nmcli con mod eth0 ipv4.method manual
+nmcli con up eth0
+
+🔄 Revert to DHCP (automatic IP)
+
+nmcli con mod eth0 ipv4.method auto
+nmcli con up eth0
+
+
+
+
+
+
+
+
+
+

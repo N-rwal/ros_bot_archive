@@ -1,0 +1,46 @@
+-scan ips:
+nmap -sn 192.168.123.0/24
+
+-ffmpeg LAN streamer:
+ffmpeg -f v4l2 -input_format yuyv422 -video_size 1280x720 -framerate 30 -i /dev/video0   -c:v libx264 -preset ultrafast -tune zerolatency -b:v 500k -f rtp udp://192.168.100.5:5004
+
+-who's using my camera:
+sudo fuser -v /dev/video0
+
+-tree:
+tree ~/ros2_ws/src/slam_toolbox_wrapper/ -L 2
+
+
+-get network interfaces:
+nmcli device status
+
+-set static IP (eth0 is the interface):
+nmcli con mod eth0 ipv4.addresses 192.168.123.25/24
+nmcli con mod eth0 ipv4.gateway 192.168.123.1
+nmcli con mod eth0 ipv4.dns 8.8.8.8
+nmcli con mod eth0 ipv4.method manual
+nmcli con up eth0
+
+-revert to DHCP:
+nmcli con mod eth0 ipv4.method auto
+nmcli con up eth0
+
+
+Back to workspace:
+cd ~/ros2_ws
+
+had to install 'sudo apt install ros-jazzy-nav2-map-server' for the localisation map loading.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+Lidar rep link:
+git clone https://github.com/Slamtec/sllidar_ros2.git
+
+update ROS2 generators:
+sudo apt install ros-jazzy-rosidl-default-generators
+
+now colcon build, should work.
+
+test-launch with:
+ros2 launch sllidar_ros2 sllidar_s3_launch.py 
+
+
