@@ -1,1 +1,14 @@
+Date:  2025-11-24T00:00:00.000-05:00
+
+Day objective:
+clone of the previous work SD card and configure and update the firmware on the main router
+
+Notes:
+configure and update the firmware on the main router,started following the firmware update for the GO2 robot, it has issues interfacing with an android phone
+
+Results:
+made a clone of the previous work SD card,configured and updated the firmware on the main router,confirmed ROS2 installation on Lite 3 robot
+
+Future plans:
+test AP mode on the GO2 robot next time,change to wifi
 
