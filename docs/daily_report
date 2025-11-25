@@ -12,3 +12,16 @@ made a clone of the previous work SD card,configured and updated the firmware on
 Future plans:
 test AP mode on the GO2 robot next time,change to wifi
 
+Date:  2025-11-25T00:00:00.000-05:00
+
+Day objective:
+patch the firmware over a physical usb-c connection
+
+Notes:
+verified secure-boot presence,robot's default firmware is 1.1.9, can be downgraded to 1.1.1 with custom bootfs
+
+Results:
+flashed custom rootfs using Ubuntu,loaded the custom bootfs, ssh session possible and have root access
+
+Future plans:
+follow instructions for secondary development running,research if ROS2 needs to be installed
