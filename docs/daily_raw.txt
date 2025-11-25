@@ -1,0 +1,28 @@
+--- Mon Nov 24 11:03:00 PM CET 2025 ---
+I reviewed the materials to begin with, then I decided to make a clone of the previous work SD card.
+I had to configure and update the firmware on the main router, has to be tested for WPA2 Enterprise encryption.
+Did an ssh to the Lite 3 robot to confirm the ROS2 installation, then I started following the firmware update for the GO2 robot, 
+it has issues interfacing with an android phone, an Iphone worked better but the configuration tripped at the network connectionto the wifi. 
+Could test the AP mode on the GO2 robot next time, then change to wifi.
+
+--- Tue Nov 25 05:34:35 PM CET 2025 ---
+I tried the wireless jailbreak methods, they don't work and are confirmed down.
+I'll have to patch the firmware over a physical usb-c connection, following these instructions:
+https://wiki.theroboverse.com/en/firmware/root/custom_rootfs_main_page
+
+I want to verify the secure-boot first, I'll need to install the rkdev tools following this:
+https://wiki.theroboverse.com/firmware/secure_boot_detect
+Confirmed secure-boot presence.
+
+Flashing custom rootfs using Ubuntu by following these instructions:
+https://wiki.theroboverse.com/firmware/root/custom_rootfs
+Found out robot's default firmware is 1.1.9, can be downgraded to 1.1.1 with custom bootfs, pursuing.
+Loaded the custom bootfs, the ssh session is now possible and I have root access.
+
+Connect to wifi:
+'ip link set wlan0 up
+wpa_supplicant -B -i wlan0 -D nl80211 -c <(wpa_passphrase Realme8pro 197355555)
+dhclient wlan0'
+Next I'll follow the instructions to get the secondary development running:
+https://github.com/legion1581/go2_firmware_tools/tree/1.1.x
+ROS2 has to be installed as well ? Better research this first.
