@@ -55,3 +55,16 @@ Started process of converting Go2 ROS2 SDK to run on RPi5-supported ROS2 distro
 Future plans:
 Evaluate camera setup using Hailo-26 module if Frigate fails,Explore options for internet access (phone or dedicated GSM module)
 
+Date:  2025-11-28T00:00:00.000-05:00
+
+Day objective:
+Installed Ubuntu 24.04 on the RPi5 and completed ROS2 jazzy base installation.
+
+Notes:
+Had to update the ros_bot document describing the ROS2 installation.,Compatibility of this SDK's used modules with the RPi5 is a nightmare,The cleanest solution would be to use a x86 CPU
+
+Results:
+SDK installation and missing modules done,Worked around the SDK to install it on the RPi5
+
+Future plans:
+Fix connectivity issues between the RPI5 and the robot,Continuing with the RPi5, working around the SDK to install it
