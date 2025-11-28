@@ -26,3 +26,21 @@ dhclient wlan0'
 Next I'll follow the instructions to get the secondary development running:
 https://github.com/legion1581/go2_firmware_tools/tree/1.1.x
 ROS2 has to be installed as well ? Better research this first.
+
+--- Thu Nov 26 06:00:58 AM CET 2025 ---
+Will have to get ROS2 working on the bot, also look into the custom camera solution.
+The camera picked is a basic Dahua model, will connect via ethernet to a RPi 5 to run the detection, then it will thrigger an alarm mechanism to the camera, all local.
+Updated the firmware on the robot, up to 1.1.17.
+For ROS2 we can use this project:
+https://github.com/abizovnuralem/go2_ros2_sdk?ysclid=mig2xsc8om252350908
+We'll use a ubuntu 22.04 RPi5 on the bot with the proposed configuration from the previous link.
+Robot side ROS2 installation has to be further researched, it does not come by default.
+
+--- Fri Nov 27 01:12:30 AM CET 2025 ---
+Ubuntu 22.04 is not available on the RPi5, therefore we cannot use the reccomended ROS2 distros, I'll have to test ROS2 Jazzyin this case wit the sdk.
+For the camera, I'll try using a bare RPi 5 to see if it's viable with Frigate, otherwise I'll have to set up the Hailo-26 module.
+The performace is reasonable on a bare RPi5, will stick with this.
+We did a tour of the mounting place for the camera setup, we'll house all the electronics in a watertight electrical box. For internet acces, 
+we could either use a phone or a dedicated GSM module.
+Starting the process of converting the Go2 ROS2 SDK to run on the RPi5-supported ROS2 distro.
+
