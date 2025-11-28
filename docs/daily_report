@@ -1,16 +1,16 @@
 Date:  2025-11-24T00:00:00.000-05:00
 
 Day objective:
-clone of the previous work SD card and configure and update the firmware on the main router
+
 
 Notes:
-configure and update the firmware on the main router,started following the firmware update for the GO2 robot, it has issues interfacing with an android phone
+reviewed the materials to begin with,configured and updated the firmware on the main router,ssh'd to the Lite 3 robot to confirm ROS2 installation,started following the firmware update for the GO2 robot
 
 Results:
-made a clone of the previous work SD card,configured and updated the firmware on the main router,confirmed ROS2 installation on Lite 3 robot
+made a clone of the previous work SD card,tested WPA2 Enterprise encryption,tested ROS2 installation on the Lite 3 robot
 
 Future plans:
-test AP mode on the GO2 robot next time,change to wifi
+test AP mode on the GO2 robot,change to wifi
 
 Date:  2025-11-25T00:00:00.000-05:00
 
@@ -25,3 +25,33 @@ flashed custom rootfs using Ubuntu,loaded the custom bootfs, ssh session possibl
 
 Future plans:
 follow instructions for secondary development running,research if ROS2 needs to be installed
+
+Date:  2025-11-26T00:00:00.000-05:00
+
+Day objective:
+Get ROS2 working on the bot and look into the custom camera solution.
+
+Notes:
+The camera picked is a basic Dahua model, will connect via ethernet to a RPi 5 to run the detection, then it will trigger an alarm mechanism to the camera, all local.,Updated the firmware on the robot, up to 1.1.17.
+
+Results:
+ROS2 installation has been researched,Robot side ROS2 installation needs further research
+
+Future plans:
+Will use this project: https://github.com/abizovnuralem/go2_ros2_sdk,Will use a ubuntu 22.04 RPi5 on the bot with the proposed configuration from the previous link.
+
+
+Date:  2025-11-27T00:00:00.000-05:00
+
+Day objective:
+Test ROS2 Jazzy with SDK and evaluate performance on RPi5
+
+Notes:
+Ubuntu 22.04 is not available on RPi5, cannot use recommended ROS2 distros,Will test camera setup on bare RPi5 to see if viable with Frigate,Perfomance is reasonable on bare RPi5
+
+Results:
+Started process of converting Go2 ROS2 SDK to run on RPi5-supported ROS2 distro
+
+Future plans:
+Evaluate camera setup using Hailo-26 module if Frigate fails,Explore options for internet access (phone or dedicated GSM module)
+
