@@ -44,3 +44,11 @@ We did a tour of the mounting place for the camera setup, we'll house all the el
 we could either use a phone or a dedicated GSM module.
 Starting the process of converting the Go2 ROS2 SDK to run on the RPi5-supported ROS2 distro.
 
+Installed Ubuntu 24.04 on the RPi5, also ROS2 jazzy base.
+Had to update the ros_bot document describing the ROS2 installation.
+Pursuing with the sdk integration.
+A module for the sdk uses open3d, which uses python3.11. I'll install this.
+Turns out, compatibility of this SDK's used modules with the RPi5 is a nightmare, the cleanest solution would be to use a x86 CPU. If I really need to use the RPI5, I either have to re-compile a bunch of python modules for python3.12 or use some virtualisation service to 'run' Ubuntu 22.04 on top of 24.04.
+The latter operation of a full ROS2 system logic for the robot might become concerning in terms of performance being virtualised.
+Continuing with the RPi5, I'm working around the SDK to install it, we won't use many of it's featuresbut it should still work.
+The SDK installation and it's missing modules is done, but there seems to be some connecivity issues betwen the RPI5 and the robot, I'll work on fixing this next.
