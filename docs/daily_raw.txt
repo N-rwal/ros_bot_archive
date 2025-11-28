@@ -9,16 +9,13 @@ Could test the AP mode on the GO2 robot next time, then change to wifi.
 I tried the wireless jailbreak methods, they don't work and are confirmed down.
 I'll have to patch the firmware over a physical usb-c connection, following these instructions:
 https://wiki.theroboverse.com/en/firmware/root/custom_rootfs_main_page
-
 I want to verify the secure-boot first, I'll need to install the rkdev tools following this:
 https://wiki.theroboverse.com/firmware/secure_boot_detect
 Confirmed secure-boot presence.
-
 Flashing custom rootfs using Ubuntu by following these instructions:
 https://wiki.theroboverse.com/firmware/root/custom_rootfs
 Found out robot's default firmware is 1.1.9, can be downgraded to 1.1.1 with custom bootfs, pursuing.
 Loaded the custom bootfs, the ssh session is now possible and I have root access.
-
 Connect to wifi:
 'ip link set wlan0 up
 wpa_supplicant -B -i wlan0 -D nl80211 -c <(wpa_passphrase Realme8pro 197355555)
@@ -44,6 +41,7 @@ We did a tour of the mounting place for the camera setup, we'll house all the el
 we could either use a phone or a dedicated GSM module.
 Starting the process of converting the Go2 ROS2 SDK to run on the RPi5-supported ROS2 distro.
 
+--- Fri Nov 28 09:11:35 PM CET 2025 ---
 Installed Ubuntu 24.04 on the RPi5, also ROS2 jazzy base.
 Had to update the ros_bot document describing the ROS2 installation.
 Pursuing with the sdk integration.
