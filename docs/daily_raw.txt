@@ -26,7 +26,8 @@ ROS2 has to be installed as well ? Better research this first.
 
 --- Thu Nov 26 06:00:58 AM CET 2025 ---
 Will have to get ROS2 working on the bot, also look into the custom camera solution.
-The camera picked is a basic Dahua model, will connect via ethernet to a RPi 5 to run the detection, then it will thrigger an alarm mechanism to the camera, all local.
+The camera picked is a basic Dahua model, will connect via ethernet to a RPi 5 to run the detection, 
+then it will thrigger an alarm mechanism to the camera, all local.
 Updated the firmware on the robot, up to 1.1.17.
 For ROS2 we can use this project:
 https://github.com/abizovnuralem/go2_ros2_sdk?ysclid=mig2xsc8om252350908
@@ -46,7 +47,34 @@ Installed Ubuntu 24.04 on the RPi5, also ROS2 jazzy base.
 Had to update the ros_bot document describing the ROS2 installation.
 Pursuing with the sdk integration.
 A module for the sdk uses open3d, which uses python3.11. I'll install this.
-Turns out, compatibility of this SDK's used modules with the RPi5 is a nightmare, the cleanest solution would be to use a x86 CPU. If I really need to use the RPI5, I either have to re-compile a bunch of python modules for python3.12 or use some virtualisation service to 'run' Ubuntu 22.04 on top of 24.04.
+Turns out, compatibility of this SDK's used modules with the RPi5 is a nightmare, the cleanest solution would be to use a x86 CPU. 
+If I really need to use the RPI5, I either have to re-compile a bunch of python modules for python3.12 or use some virtualisation 
+service to 'run' Ubuntu 22.04 on top of 24.04.
 The latter operation of a full ROS2 system logic for the robot might become concerning in terms of performance being virtualised.
+
+--- Wed Dec  1 10:08:48 PM CET 2025 ---
+Picking up from the last week, our goal for today is to controll the robot using the ROS2 teleop-keyboard.
+As much as I like digging code, we need to confirm the operation of the hardware first, before development.
+For this testing phase, I'll briefly load up the proper configuration on a x86 computer.
+I installed the full recomended setup for ROS2 'humble', but there's no connection with the robot still.
+We could try to use the official sdk to see wether it works.. For it, we'll need to downgrade the robot's
+version to 1.1.11 again though. I am preparing the robot today for the following tests.
+
+--- Wed Dec  2 10:10:00 PM CET 2025 ---
+I installed the sdk on the x86 computer and using the right dds middlewarewe can use cpp scripts to interface with the robot,
+still, the ROS2 support is lacking. I made the right modifications to the unitree's setup script to adapt to our version and this finally worked.
+We have the robot now responding to universal /cmd_vel ROS2 topics, the position data for Rviz2 and camera feed.
+Lidar is harder since the driver for it needs to be updated to the newer hardware.
+I cut down the default launch script, only using the nodes of interest in our project.
+I am attempting to recreate this using the RPi5, but there are some verion missmatches for now that need work.
+
+--- Wed Dec  3 10:15:14 PM CET 2025 ---
+The RPi5 not working is confusing, I should be able to recover the launch files of the previous project to use as templates.
+Assumption: The RPi5 doesn't work with keyboard teleop's /cmd_vel because of updated standards between humble and jazzy.
+Testing the same setup as yesterday with the simple or default script doesn't seem to work anymore. The DDS service got reset apparently after a reboot. Rebuilding it does not solve the issue imediatelly.
+Current goal is to recover the previous work, deploy the launch script from the RPi5 and potentially research the Lidar driver versions.
+I'll try to cross devellop using jazzy on a x86 as well, since I'm afraid it might be compatibility issue.
+Lidar driver found here:
+https://github.com/unitreerobotics/unilidar_sdk2
 Continuing with the RPi5, I'm working around the SDK to install it, we won't use many of it's featuresbut it should still work.
 The SDK installation and it's missing modules is done, but there seems to be some connecivity issues betwen the RPI5 and the robot, I'll work on fixing this next.
