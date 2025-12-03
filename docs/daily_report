@@ -4,7 +4,8 @@ Day objective:
 
 
 Notes:
-reviewed the materials to begin with,configured and updated the firmware on the main router,ssh'd to the Lite 3 robot to confirm ROS2 installation,started following the firmware update for the GO2 robot
+reviewed the materials to begin with,configured and updated the firmware on the main router,ssh'd to the Lite 3 robot to confirm ROS2 installation,
+started following the firmware update for the GO2 robot
 
 Results:
 made a clone of the previous work SD card,tested WPA2 Enterprise encryption,tested ROS2 installation on the Lite 3 robot
@@ -32,14 +33,15 @@ Day objective:
 Get ROS2 working on the bot and look into the custom camera solution.
 
 Notes:
-The camera picked is a basic Dahua model, will connect via ethernet to a RPi 5 to run the detection, then it will trigger an alarm mechanism to the camera, all local.,Updated the firmware on the robot, up to 1.1.17.
+The camera picked is a basic Dahua model, will connect via ethernet to a RPi 5 to run the detection, 
+then it will trigger an alarm mechanism to the camera, all local.,Updated the firmware on the robot, up to 1.1.17.
 
 Results:
 ROS2 installation has been researched,Robot side ROS2 installation needs further research
 
 Future plans:
-Will use this project: https://github.com/abizovnuralem/go2_ros2_sdk,Will use a ubuntu 22.04 RPi5 on the bot with the proposed configuration from the previous link.
-
+Will use this project: https://github.com/abizovnuralem/go2_ros2_sdk,
+Will use a ubuntu 22.04 RPi5 on the bot with the proposed configuration from the previous link.
 
 Date:  2025-11-27T00:00:00.000-05:00
 
@@ -47,7 +49,8 @@ Day objective:
 Test ROS2 Jazzy with SDK and evaluate performance on RPi5
 
 Notes:
-Ubuntu 22.04 is not available on RPi5, cannot use recommended ROS2 distros,Will test camera setup on bare RPi5 to see if viable with Frigate,Perfomance is reasonable on bare RPi5
+Ubuntu 22.04 is not available on RPi5, cannot use recommended ROS2 distros,Will test camera setup on bare RPi5 to see if viable with Frigate,
+Perfomance is reasonable on bare RPi5
 
 Results:
 Started process of converting Go2 ROS2 SDK to run on RPi5-supported ROS2 distro
@@ -61,10 +64,59 @@ Day objective:
 Installed Ubuntu 24.04 on the RPi5 and completed ROS2 jazzy base installation.
 
 Notes:
-Had to update the ros_bot document describing the ROS2 installation.,Compatibility of this SDK's used modules with the RPi5 is a nightmare,The cleanest solution would be to use a x86 CPU
+Had to update the ros_bot document describing the ROS2 installation.,Compatibility of this SDK's used modules with the RPi5 is a nightmare,
+The cleanest solution would be to use a x86 CPU
 
 Results:
 SDK installation and missing modules done,Worked around the SDK to install it on the RPi5
 
 Future plans:
 Fix connectivity issues between the RPI5 and the robot,Continuing with the RPi5, working around the SDK to install it
+
+Date:  2025-12-01T00:00:00.000-05:00
+
+Day objective:
+Picking up from the last week, our goal for today is to control the robot using the ROS2 teleop-keyboard.
+
+Notes:
+As much as I like digging code, we need to confirm the operation of the hardware first, before development.,For this testing phase, 
+I'll briefly load up the proper configuration on a x86 computer.,I installed the full recommended setup for ROS2 'humble', 
+but there's no connection with the robot still.,We could try to use the official sdk to see whether it works.. 
+For it, we'll need to downgrade the robot's version to 1.1.11 again though.
+
+Results:
+I prepared the robot today for the following tests.
+
+Future plans:
+
+
+Date:  2025-12-02T00:00:00.000-05:00
+
+Day objective:
+installed the sdk on the x86 computer and using the right dds middleware
+
+Notes:
+ROS2 support is lacking,Made modifications to unitree's setup script to adapt to our version,Updated driver for Lidar to newer hardware needed
+
+Results:
+Robot now responding to universal /cmd_vel ROS2 topics,Position data for Rviz2 and camera feed working,Cut down default launch script, 
+only using nodes of interest in our project
+
+Future plans:
+Recreate this on the RPi5 but need to work out version mismatches
+
+Date:  2025-12-03T00:00:00.000-05:00
+
+Day objective:
+Recover previous work, deploy launch script from RPi5 and potentially research Lidar driver versions
+
+Notes:
+Assumption: The RPi5 doesn't work with keyboard teleop's/cmd_vel because of updated standards between humble and jazzy.,
+Testing the same setup as yesterday with the simple or default script doesn't seem to work anymore.,
+The DDS service got reset apparently after a reboot.
+
+Results:
+Lidar driver found at https://github.com/unitreerobotics/unilidar_sdk2
+
+Future plans:
+Try cross developing using jazzy on a x86 as well, since it might be compatibility issue
