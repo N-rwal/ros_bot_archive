@@ -78,3 +78,75 @@ Lidar driver found here:
 https://github.com/unitreerobotics/unilidar_sdk2
 Continuing with the RPi5, I'm working around the SDK to install it, we won't use many of it's featuresbut it should still work.
 The SDK installation and it's missing modules is done, but there seems to be some connecivity issues betwen the RPI5 and the robot, I'll work on fixing this next.
+
+--- Wed JAN 14 09:11:35 PM CET 2026 ---
+Over the last days I tookt the unofficial go2 ros2 sdk and worked to adapt it for our use, stripping it of unnecessary parts.
+I'm working from my computer first, it's easier for the development. I'm noticing rather concerning performances: slow updates for real time sensors.
+Though it's not the case at startup, only after the 3d point-cloud gets a bit loaded (literally a spin arround).
+
+--- Thu Jan 15 09:11:35 PM CET 2026 ---
+Looking into the 3D lidar code, it is a very rough integration, in general the project code seems to be AI generated. Right now, the robot's computer takes the lidar data and publishe it to a 'web' destination. The 'driver' on the Rpi then recovers the web data and processes it to ROS2 topics. The process is very ressource intensive, and even an intel i7 struggles and has 3 second latency.
+
+--- Thu Jan 22 09:11:35 PM CET 2026 ---
+Over the last days I tookt the unofficial go2 ros2 sdk and worked to adapt it for our use, stripping it of unnecessary parts.
+I'm working from my computer first, it's easier for the development. I'm noticing rather concerning performances: slow updates for real time sensors. Though it's not the case at startup, only after the 3d point-cloud gets a bit loaded (literally a spin arround).
+
+--- Fri Jan 30 09:11:35 PM CET 2026 ---
+Turns out the 3D lidar 'driver' is really bad, even my pc can't handle the processing, not a chance for the RPi.
+For the time being I swithched to a 2D lidar, to validate the rest of the robot's functions.
+After some configurations, we have the robot navigating well on a pre-recorder map.
+
+--- Mon Feb 9 09:11:35 PM CET 2026 ---
+Now I'm looking into automating the robot, make it follow a planed path, spin to localise at the start, etc..
+There are some nuances with the initial pose, I removed it for now, will be relying on amcl for that localisation.
+There are many ways to accomplish this, for simplicity we'll go with sequentiall poses as it allows external timings compared to the waypoint mission path.
+
+--- Tue Feb 10 09:11:35 PM CET 2026 ---
+Test passed, I'll do a bigger test today, a 10x10 meter path. I think it needs a separate script rather than ne included in
+the launch file, and perhaps with some kind of manual trigger.
+Done and done !
+
+--- Wed Feb 11 09:11:35 PM CET 2026 ---
+Apparent issues: the map starts offset, amcl is slow.
+To do: install setup, documentation, qr code centration.
+
+--- Thu Feb 12 09:11:35 PM CET 2026 ---
+On the topic, as the navigation is done, I'm now looking into the base docking using april tags. My idea is that on the map, we'd place
+the aproximate positions of the bases, and use the tags to orient the robot as it approaches the base's position.
+In fact, superficial research and no development, as the camera solution may be drasticaly different. Rather fix existing issues.
+
+--- Mon Feb 16 09:11:35 PM CET 2026 ---
+I'm writing down the process of installing the configuration on a test RPi, this will serve in the creation of an automated script
+later. It seems good for now, I'll be waiting for the robot to be able to test it properly.
+
+--- Tue Feb 17 09:11:35 PM CET 2026 ---
+We did a quick check on the camera we installed yesterday, set the accuracy up to 70% to limit detections.
+The robot's stil on the road, I can only make a written guide on the installation at the moment.
+
+--- Wed Feb 18 09:11:35 PM CET 2026 ---
+Command laptop configuration, documenting software installation.
+
+--- Fri Feb 20 09:11:35 PM CET 2026 ---
+Auto install script is done for the moment to a usable state. Will nee to be updated once the workflow evolves.
+
+--- Mon Feb 23 09:11:35 PM CET 2026 ---
+Frigate configuration done, Rpi routing of camera done.
+
+--- Tue Feb 24 09:11:35 PM CET 2026 ---
+Setup confirmed working, embedding launchers on boot. Starting VPN tests.
+Final interface choice for the laptop, a PYQT app to integrate basic commands, frigate and ROS map view.
+
+--- Wed Feb 25 09:11:35 PM CET 2026 ---
+Faulty wiring on the VPN server, cannot establish connection between TRB LANs.
+Found command center app for ROS1 robots.
+
+--- Thu Feb 26 09:11:35 PM CET 2026 ---
+Due to the private wireguard implementation in the TRBs, they have not been able to run as servers.
+With the correct wiring, the connection is now good and the setup is validated.
+
+--- Mon Mar 2 09:11:35 PM CET 2026 ---
+Configure the VPS server, finished the connections for the camera to laptop VPN setup.
+
+--- Tue Feb 3 09:11:35 PM CET 2026 ---
+Looking to assemble project documentation, continue PYQT app development.
+Created diagrams of the project, and did some research on removing the 3d lidar code.
